@@ -1,0 +1,28 @@
+version: '3'
+services:
+  beck:
+    container_name: beck
+    build:
+      context: L3_backend/.
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    networks:
+      - app_network
+  
+  front:
+    container_name: front
+    build:
+      context: L3_frontend/.
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    links:
+      - beck:link
+    networks:
+      - app_network
+
+networks:
+  app_network:
+
+
